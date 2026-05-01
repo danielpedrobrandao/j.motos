@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>J. Motos | Motos Novas e Seminovas – Blumenau/SC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#D90000;
+  --red2:#FF1111;
+  --red-glow:rgba(217,0,0,0.4);
+  --red-dim:rgba(217,0,0,0.1);
+  --silver:#C8C8C8;
+  --silver2:#E8E8E8;
+  --silver3:#A0A0A0;
+  --black:#080808;
+  --d1:#101010;
+  --d2:#181818;
+  --d3:#202020;
+  --d4:#282828;
+  --white:#F5F5F5;
+  --text-dim:rgba(200,200,200,0.5);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;overflow-x:hidden;cursor:none;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:var(--black);}
+::-webkit-scrollbar-thumb{background:var(--red);border-radius:2px;}
+
+/* ── CURSOR ── */
+#cur{position:fixed;width:10px;height:10px;background:var(--red);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);box-shadow:0 0 10px var(--red),0 0 20px var(--red-glow);transition:width .15s,height .15s;}
+#cur2{position:fixed;width:30px;height:30px;border:1px solid rgba(217,0,0,0.4);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:all .15s ease;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;height:70px;
+  background:rgba(8,8,8,0.9);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(217,0,0,0.18);
+  transition:all .3s;
+}
+nav.scrolled{height:58px;border-bottom-color:rgba(217,0,0,0.35);}
+
+/* LOGO */
+.nav-logo{display:flex;align-items:center;gap:16px;text-decoration:none;}
+
+.logo-badge{
+  position:relative;
+  width:58px;height:58px;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* Animated J badge since no image provided */
+.logo-j{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:38px;font-weight:900;
+  color:var(--white);
+  position:relative;z-index:3;
+  text-shadow:0 0 20px var(--red-glow);
+  line-height:1;
+  animation:jGlow 2s ease-in-out infinite alternate;
+}
+@keyframes jGlow{
+  from{text-shadow:0 0 10px var(--red-glow),0 0 20px rgba(217,0,0,.2);}
+  to{text-shadow:0 0 24px var(--red),0 0 48px var(--red-glow),0 0 80px rgba(217,0,0,.2);}
+}
+
+.logo-hex{
+  position:absolute;inset:0;z-index:2;
+  animation:rotateSlow 8s linear infinite;
+}
+.logo-hex svg{width:100%;height:100%;}
+
+.logo-ring-outer{
+  position:absolute;inset:-4px;z-index:1;
+  border:1px solid rgba(217,0,0,.2);border-radius:50%;
+  animation:rotateSlow 12s linear infinite reverse;
+}
+@keyframes rotateSlow{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+.logo-dot{
+  position:absolute;width:6px;height:6px;
+  background:var(--red);border-radius:50%;
+  box-shadow:0 0 8px var(--red);
+  animation:dotOrbit 8s linear infinite;
+  top:50%;left:50%;
+  transform-origin:0 0;
+}
+@keyframes dotOrbit{from{transform:rotate(0deg) translateX(28px) translateY(-3px)}to{transform:rotate(360deg) translateX(28px) translateY(-3px)}}
+
+.logo-text-wrap{display:flex;flex-direction:column;}
+.logo-main{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:26px;color:var(--white);letter-spacing:4px;line-height:1;
+}
+.logo-main span{color:var(--red);}
+.logo-sub{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:9px;font-weight:600;letter-spacing:3px;
+  text-transform:uppercase;color:var(--silver3);margin-top:1px;
+}
+
+.nav-links{display:flex;gap:28px;list-style:none;align-items:center;}
+.nav-links a{
+  color:rgba(200,200,200,.55);text-decoration:none;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  transition:color .2s;position:relative;padding-bottom:3px;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:0;left:0;
+  width:0;height:1px;background:var(--red);transition:width .3s;
+}
+.nav-links a:hover{color:var(--silver2);}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{
+  background:var(--red);color:var(--white) !important;
+  padding:9px 22px;border-radius:2px;
+  font-family:'Barlow Condensed',sans-serif !important;
+  font-size:12px !important;font-weight:700;letter-spacing:2px;
+  transition:all .25s !important;border:1px solid var(--red);
+  box-shadow:0 0 16px var(--red-glow);
+}
+.nav-cta::after{display:none !important;}
+.nav-cta:hover{background:var(--red2) !important;box-shadow:0 0 28px var(--red),0 0 60px var(--red-glow);transform:translateY(-1px);}
+
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:none;background:none;border:none;padding:4px;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--silver);transition:all .3s;border-radius:1px;}
+
+/* ── HERO ── */
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;}
+
+.hero-bg{
+  position:absolute;inset:0;
+  background:url('https://i.postimg.cc/Wz74LKGd/Captura-de-tela-2026-04-30-121756.jpg') center/cover no-repeat;
+}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(110deg,rgba(8,8,8,.96) 0%,rgba(8,8,8,.78) 55%,rgba(8,8,8,.25) 100%),
+    radial-gradient(ellipse at 75% 50%,rgba(217,0,0,.1),transparent 65%);
+}
+
+/* diagonal stripes accent */
+.hero-stripes{
+  position:absolute;left:0;top:0;bottom:0;width:6px;
+  background:repeating-linear-gradient(180deg,var(--red) 0px,var(--red) 40px,transparent 40px,transparent 60px);
+  opacity:.6;
+}
+.hero-stripes2{
+  position:absolute;left:14px;top:0;bottom:0;width:2px;
+  background:repeating-linear-gradient(180deg,var(--red) 0px,var(--red) 20px,transparent 20px,transparent 40px);
+  opacity:.3;
+}
+
+/* grid overlay */
+.hero-grid{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(217,0,0,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(217,0,0,.03) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+
+/* scan line */
+.hero-scan{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;
+}
+.hero-scan::after{
+  content:'';position:absolute;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(217,0,0,.3),transparent);
+  animation:scanDown 6s linear infinite;
+}
+@keyframes scanDown{0%{top:-2%}100%{top:102%}}
+
+.hero-content{position:relative;z-index:2;padding:0 7%;padding-top:70px;max-width:780px;}
+
+.h-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  margin-bottom:22px;
+  animation:fadeUp .6s ease both;
+}
+.h-dot{width:7px;height:7px;background:var(--red);border-radius:50%;animation:pulse 1s ease infinite;box-shadow:0 0 8px var(--red);}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.6)}}
+.h-eyebrow-txt{
+  font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:3px;text-transform:uppercase;color:var(--red);
+}
+
+.hero-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(64px,9vw,128px);
+  line-height:.88;letter-spacing:0px;
+  animation:fadeUp .6s ease .12s both;
+}
+.ht1{display:block;color:var(--white);}
+.ht2{
+  display:block;color:transparent;
+  -webkit-text-stroke:1px rgba(200,200,200,.25);
+  letter-spacing:4px;
+}
+.ht3{
+  display:block;color:var(--red);
+  text-shadow:0 0 40px var(--red-glow);
+  animation:redGlow 2s ease-in-out infinite alternate;
+}
+@keyframes redGlow{from{text-shadow:0 0 20px var(--red-glow)}to{text-shadow:0 0 50px var(--red),0 0 100px var(--red-glow)}}
+
+.hero-desc{
+  font-family:'Barlow',sans-serif;font-size:15px;font-weight:300;line-height:1.75;
+  color:rgba(200,200,200,.6);max-width:480px;
+  margin:24px 0 40px;
+  animation:fadeUp .6s ease .25s both;
+}
+
+.hero-tags{
+  display:flex;gap:10px;flex-wrap:wrap;margin-bottom:44px;
+  animation:fadeUp .6s ease .35s both;
+}
+.htag{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:7px 14px;
+  background:rgba(217,0,0,.07);border:1px solid rgba(217,0,0,.2);
+  border-radius:2px;
+  font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;
+  letter-spacing:1.5px;text-transform:uppercase;color:rgba(217,0,0,.8);
+  transition:all .2s;
+}
+.htag:hover{background:rgba(217,0,0,.15);border-color:var(--red);color:var(--red);}
+
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp .6s ease .45s both;}
+
+.btn-p{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--red);color:var(--white);
+  text-decoration:none;padding:15px 34px;border-radius:2px;
+  font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  border:1px solid var(--red);
+  box-shadow:0 0 24px var(--red-glow);
+  transition:all .25s;position:relative;overflow:hidden;
+}
+.btn-p:hover{background:var(--red2);box-shadow:0 0 50px var(--red);transform:translateY(-2px);}
+
+.btn-s{
+  display:inline-flex;align-items:center;gap:10px;
+  background:transparent;color:var(--silver2);
+  text-decoration:none;padding:15px 34px;border-radius:2px;
+  font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  border:1px solid rgba(200,200,200,.25);transition:all .25s;
+}
+.btn-s:hover{border-color:var(--silver2);background:rgba(200,200,200,.05);transform:translateY(-2px);}
+
+/* hero counters */
+.hero-counters{
+  position:absolute;right:5%;bottom:60px;z-index:2;
+  border-left:1px solid rgba(217,0,0,.25);
+  animation:fadeIn .8s ease .8s both;
+}
+.hc-item{padding:16px 26px;border-bottom:1px solid rgba(255,255,255,.04);}
+.hc-item:last-child{border-bottom:none;}
+.hc-num{
+  font-family:'Bebas Neue',sans-serif;font-size:38px;color:var(--red);
+  line-height:1;text-shadow:0 0 16px var(--red-glow);
+}
+.hc-lbl{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--silver3);margin-top:2px;}
+
+.hero-scroll{
+  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:7px;z-index:2;
+  animation:fadeIn 1s ease 1s both;
+}
+.sc-line{width:1px;height:44px;background:linear-gradient(180deg,var(--red),transparent);animation:scAnim 1.5s ease infinite;}
+@keyframes scAnim{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.sc-txt{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(200,200,200,.3);}
+
+/* ── TICKER ── */
+.ticker{
+  overflow:hidden;background:var(--red);padding:10px 0;
+  border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(0,0,0,.3);
+  position:relative;z-index:1;
+}
+.ticker-track{display:flex;white-space:nowrap;animation:tickMove 22s linear infinite;}
+.ti{
+  display:inline-flex;align-items:center;gap:20px;padding:0 26px;
+  font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(255,255,255,.9);
+}
+.ts{color:rgba(255,255,255,.35);}
+@keyframes tickMove{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ── SECTIONS ── */
+section{padding:110px 6%;position:relative;}
+
+.s-tag{
+  display:inline-flex;align-items:center;gap:12px;
+  font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:12px;
+}
+.s-tag::before{content:'';width:30px;height:1px;background:var(--red);}
+.s-tag::after{content:'';width:6px;height:6px;border:1px solid var(--red);transform:rotate(45deg);}
+
+.s-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(42px,6vw,72px);
+  line-height:.93;letter-spacing:.5px;margin-bottom:14px;
+}
+.s-title em{font-style:normal;color:var(--red);}
+.s-title .dim{color:transparent;-webkit-text-stroke:1px rgba(200,200,200,.2);}
+
+.s-desc{font-size:15px;font-weight:300;line-height:1.75;color:var(--text-dim);max-width:500px;}
+
+/* ── ESTOQUE SLIDER ── */
+#estoque{background:var(--d1);}
+
+.slider-wrap{position:relative;overflow:hidden;}
+.slider-track{display:flex;gap:18px;transition:transform .5s cubic-bezier(.25,.8,.25,1);}
+.slide{
+  flex:0 0 calc(33.333% - 13px);
+  border-radius:4px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.06);
+  position:relative;cursor:none;transition:all .35s;
+}
+.slide:hover{border-color:rgba(217,0,0,.35);transform:scale(1.02);}
+.slide img{
+  width:100%;height:250px;object-fit:cover;display:block;
+  filter:saturate(.85) brightness(.9);transition:filter .4s;
+}
+.slide:hover img{filter:saturate(1.1) brightness(1);}
+.slide::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 50%,rgba(8,8,8,.85) 100%);
+  pointer-events:none;
+}
+.slide-info{
+  position:absolute;bottom:0;left:0;right:0;z-index:1;
+  padding:16px;opacity:.85;transition:opacity .3s;
+}
+.slide:hover .slide-info{opacity:1;}
+.si-tag{
+  font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:3px;
+}
+.si-name{
+  font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;color:var(--white);
+}
+
+/* slide corner accent */
+.slide::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--red),transparent);
+  transform:scaleX(0);transition:transform .4s;z-index:2;
+}
+.slide:hover::before{transform:scaleX(1);}
+
+.sl-ctrls{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:28px;}
+.sl-btn{
+  width:44px;height:44px;border-radius:2px;
+  border:1px solid rgba(200,200,200,.15);background:transparent;
+  color:var(--silver);font-size:20px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:none;transition:all .2s;
+}
+.sl-btn:hover{border-color:var(--red);color:var(--red);background:rgba(217,0,0,.08);}
+.sl-dots{display:flex;gap:8px;}
+.sdot{
+  width:20px;height:2px;background:rgba(200,200,200,.15);
+  border-radius:2px;cursor:none;transition:all .3s;
+}
+.sdot.act{background:var(--red);width:30px;}
+
+/* ── CATÁLOGO ── */
+#catalogo{background:var(--black);}
+
+.cat-top{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:52px;flex-wrap:wrap;gap:24px;
+}
+
+.filters{display:flex;gap:7px;flex-wrap:wrap;}
+.fb{
+  padding:8px 18px;border:1px solid rgba(200,200,200,.1);background:transparent;
+  color:rgba(200,200,200,.4);
+  font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+  cursor:none;border-radius:2px;transition:all .2s;
+}
+.fb:hover,.fb.act{border-color:var(--red);background:rgba(217,0,0,.08);color:var(--red);}
+
+.p-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:20px;}
+
+/* CARD */
+.p-card{
+  background:var(--d2);border:1px solid rgba(255,255,255,.05);
+  border-radius:4px;overflow:hidden;position:relative;transition:all .35s;cursor:none;
+}
+.p-card::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--red),transparent);
+  transform:scaleX(0);transition:transform .4s;
+}
+.p-card:hover{
+  border-color:rgba(217,0,0,.28);
+  transform:translateY(-8px);
+  box-shadow:0 22px 55px rgba(0,0,0,.6),0 0 0 1px rgba(217,0,0,.12);
+}
+.p-card:hover::after{transform:scaleX(1);}
+
+.p-img{
+  position:relative;height:220px;overflow:hidden;
+  background:var(--d3);
+}
+.p-img img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .5s,filter .5s;
+  filter:saturate(.85) brightness(.9);
+}
+.p-card:hover .p-img img{transform:scale(1.06);filter:saturate(1.1) brightness(1);}
+.p-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 40%,rgba(8,8,8,.7) 100%);
+  pointer-events:none;
+}
+
+.p-badge{
+  position:absolute;top:11px;left:11px;z-index:1;
+  font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:4px 11px;border-radius:2px;
+}
+.b-red{background:var(--red);color:#fff;}
+.b-silver{background:var(--silver);color:var(--black);}
+.b-dark{background:rgba(24,24,24,.9);border:1px solid rgba(200,200,200,.25);color:var(--silver2);}
+
+.p-body{padding:20px 20px 24px;}
+.p-cat{
+  font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:5px;
+}
+.p-name{
+  font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;
+  color:var(--white);line-height:1.1;margin-bottom:12px;letter-spacing:.5px;
+}
+.p-specs{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:16px;}
+.ps{
+  display:inline-flex;align-items:center;gap:5px;
+  font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;
+  color:var(--text-dim);letter-spacing:.5px;
+}
+.ps-i{color:var(--red);}
+.p-foot{
+  display:flex;align-items:center;justify-content:space-between;
+  border-top:1px solid rgba(255,255,255,.05);padding-top:16px;
+}
+.p-lbl{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);}
+.p-price{
+  font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--silver2);line-height:1;
+}
+.btn-card{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(217,0,0,.1);border:1px solid rgba(217,0,0,.35);
+  color:var(--red);text-decoration:none;
+  font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:9px 16px;border-radius:2px;cursor:none;transition:all .2s;
+}
+.btn-card:hover{background:var(--red);color:#fff;box-shadow:0 0 16px var(--red-glow);}
+
+/* ── CLIENTES ── */
+#clientes{background:var(--d1);}
+
+.clients-masonry{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:52px;
+}
+.cl-card{
+  position:relative;border-radius:4px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.05);cursor:none;transition:all .35s;
+}
+.cl-card:first-child{grid-column:span 2;grid-row:span 2;}
+.cl-card img{
+  width:100%;height:220px;object-fit:cover;display:block;
+  filter:saturate(.75) brightness(.85);transition:all .5s;
+}
+.cl-card:first-child img{height:100%;}
+.cl-card:hover img{filter:saturate(1) brightness(1);transform:scale(1.04);}
+.cl-card::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 40%,rgba(8,8,8,.85) 100%);
+  pointer-events:none;transition:background .3s;
+}
+.cl-card:hover::after{background:linear-gradient(180deg,transparent 30%,rgba(140,0,0,.3) 100%);}
+.cl-card:hover{border-color:rgba(217,0,0,.3);}
+
+.cl-info{
+  position:absolute;bottom:0;left:0;right:0;z-index:1;padding:14px;
+  transform:translateY(4px);opacity:.85;transition:all .3s;
+}
+.cl-card:hover .cl-info{transform:translateY(0);opacity:1;}
+.cl-name{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:var(--white);}
+.cl-tag{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);}
+
+/* ── SOBRE ── */
+#sobre{background:var(--black);}
+.sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+
+.sobre-left{position:relative;}
+.sobre-left img{
+  width:100%;height:500px;object-fit:cover;border-radius:4px;
+  filter:saturate(.8) brightness(.85);border:1px solid rgba(217,0,0,.1);
+}
+.sobre-left::before{
+  content:'';position:absolute;inset:14px;
+  border:1px solid rgba(217,0,0,.12);border-radius:4px;pointer-events:none;
+}
+.sobre-left::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(217,0,0,.06),transparent 60%);
+  border-radius:4px;pointer-events:none;
+}
+/* HUD corners */
+.hud-c{position:absolute;width:16px;height:16px;}
+.hud-c.tl{top:0;left:0;border-top:2px solid var(--red);border-left:2px solid var(--red);}
+.hud-c.tr{top:0;right:0;border-top:2px solid var(--red);border-right:2px solid var(--red);}
+.hud-c.bl{bottom:0;left:0;border-bottom:2px solid var(--red);border-left:2px solid var(--red);}
+.hud-c.br{bottom:0;right:0;border-bottom:2px solid var(--red);border-right:2px solid var(--red);}
+
+.feats{display:flex;flex-direction:column;gap:16px;}
+.feat{
+  display:flex;gap:16px;align-items:flex-start;
+  padding:18px 20px;background:var(--d2);border:1px solid rgba(255,255,255,.05);
+  border-radius:4px;transition:all .3s;position:relative;overflow:hidden;
+}
+.feat::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:2px;
+  background:linear-gradient(180deg,transparent,var(--red),transparent);
+  transform:scaleY(0);transition:transform .4s;
+}
+.feat:hover::before{transform:scaleY(1);}
+.feat:hover{border-color:rgba(217,0,0,.2);background:var(--d3);transform:translateX(6px);}
+.feat-ico{
+  width:44px;height:44px;flex-shrink:0;
+  background:rgba(217,0,0,.08);border:1px solid rgba(217,0,0,.18);
+  border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:20px;
+}
+.feat h3{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:3px;letter-spacing:.5px;}
+.feat p{font-size:13px;font-weight:300;color:var(--text-dim);line-height:1.6;}
+
+/* ── AVALIAÇÕES ── */
+#avaliacoes{background:var(--d1);}
+
+.av-header{display:flex;align-items:center;gap:32px;padding:28px 0;border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:44px;flex-wrap:wrap;}
+.av-big{
+  font-family:'Bebas Neue',sans-serif;font-size:96px;color:var(--red);line-height:1;
+  text-shadow:0 0 30px var(--red-glow);
+}
+.av-detail{display:flex;flex-direction:column;gap:6px;}
+.stars-r{display:flex;gap:4px;}
+.star{color:var(--red);font-size:22px;text-shadow:0 0 6px var(--red-glow);}
+.av-count{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:var(--text-dim);letter-spacing:.5px;}
+
+.revs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+.rev-card{
+  background:var(--d2);border:1px solid rgba(255,255,255,.05);border-radius:4px;padding:24px;
+  transition:all .3s;position:relative;overflow:hidden;
+}
+.rev-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--red),transparent);
+  transform:scaleX(0);transition:transform .4s;
+}
+.rev-card:hover::before{transform:scaleX(1);}
+.rev-card:hover{border-color:rgba(217,0,0,.2);transform:translateY(-4px);}
+.rev-stars{display:flex;gap:3px;margin-bottom:12px;}
+.rev-stars .star{font-size:14px;}
+.rev-text{
+  font-size:14px;font-weight:300;line-height:1.7;color:rgba(200,200,200,.65);
+  margin-bottom:18px;padding-left:20px;position:relative;
+}
+.rev-text::before{
+  content:'"';font-family:'Bebas Neue',sans-serif;font-size:36px;
+  color:rgba(217,0,0,.2);position:absolute;top:-8px;left:-4px;
+}
+.rev-auth{
+  display:flex;align-items:center;gap:10px;
+  border-top:1px solid rgba(255,255,255,.05);padding-top:14px;
+}
+.rev-av{
+  width:34px;height:34px;border-radius:50%;border:1px solid rgba(217,0,0,.3);
+  background:var(--d3);display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;font-size:14px;color:var(--red);
+}
+.rev-name{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:var(--white);}
+.rev-via{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;letter-spacing:1px;color:var(--text-dim);}
+
+/* ── INTERIOR ── */
+#interior{background:var(--black);}
+.int-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:6px;overflow:hidden;}
+.int-img{position:relative;overflow:hidden;}
+.int-img img{width:100%;height:500px;object-fit:cover;filter:saturate(.8) brightness(.85);transition:filter .5s;}
+.int-img:hover img{filter:saturate(1) brightness(1);}
+.int-img::before{
+  content:'';position:absolute;inset:0;z-index:1;
+  background:linear-gradient(135deg,rgba(217,0,0,.08),transparent);
+  pointer-events:none;
+}
+.int-copy{
+  background:var(--d2);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:60px 52px;border:1px solid rgba(255,255,255,.04);
+}
+
+/* ── CONTATO ── */
+#contato{background:var(--d1);}
+.cont-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:70px;align-items:start;margin-top:52px;}
+
+.info-blocks{display:flex;flex-direction:column;gap:14px;}
+.ib{
+  display:flex;gap:14px;align-items:center;
+  padding:18px 20px;background:var(--d2);border:1px solid rgba(255,255,255,.05);
+  border-radius:4px;text-decoration:none;color:var(--white);transition:all .3s;
+}
+.ib:hover{border-color:rgba(217,0,0,.3);transform:translateX(6px);}
+.ib-ico{
+  width:42px;height:42px;flex-shrink:0;
+  background:rgba(217,0,0,.08);border:1px solid rgba(217,0,0,.18);
+  border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:18px;
+}
+.ib-lbl{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:3px;}
+.ib-val{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;letter-spacing:.5px;}
+
+.map-box{border-radius:4px;overflow:hidden;height:420px;border:1px solid rgba(255,255,255,.06);}
+.map-box iframe{width:100%;height:100%;border:none;filter:invert(1) hue-rotate(180deg) saturate(.8) brightness(.9);}
+
+/* ── WPP FLOAT ── */
+.wpp{position:fixed;bottom:28px;right:28px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:10px;}
+.wpp-tip{
+  background:var(--d2);border:1px solid rgba(217,0,0,.2);
+  color:var(--silver2);padding:8px 16px;border-radius:20px;
+  font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;letter-spacing:.5px;
+  opacity:0;transform:translateX(10px);transition:all .3s;pointer-events:none;
+  box-shadow:0 4px 16px rgba(0,0,0,.4);
+}
+.wpp:hover .wpp-tip{opacity:1;transform:translateX(0);}
+.wpp-btn{
+  width:58px;height:58px;background:#25D366;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  text-decoration:none;cursor:none;
+  box-shadow:0 4px 20px rgba(37,211,102,.4);
+  animation:wIn .5s ease,wP 2.5s ease 1s infinite;transition:transform .2s;
+}
+.wpp-btn:hover{transform:scale(1.1);}
+.wpp-btn svg{width:28px;height:28px;fill:#fff;}
+@keyframes wIn{0%{transform:scale(0)}80%{transform:scale(1.1)}100%{transform:scale(1)}}
+@keyframes wP{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4)}50%{box-shadow:0 4px 40px rgba(37,211,102,.7)}}
+
+/* ── FOOTER ── */
+footer{background:var(--black);border-top:1px solid rgba(255,255,255,.05);padding:56px 6% 28px;}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:56px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:28px;}
+.foot-logo-wrap{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
+.foot-logo-j{
+  font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--white);line-height:1;
+  text-shadow:0 0 20px var(--red-glow);
+  background:var(--d2);border:1px solid rgba(217,0,0,.2);
+  width:52px;height:52px;display:flex;align-items:center;justify-content:center;
+  border-radius:4px;
+}
+.foot-brand{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--white);letter-spacing:3px;}
+.foot-brand span{color:var(--red);}
+.foot-p{font-size:13px;font-weight:300;color:var(--text-dim);line-height:1.7;max-width:280px;margin-top:8px;}
+.foot-col h4{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:16px;}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.foot-col ul li a{color:var(--text-dim);text-decoration:none;font-size:14px;transition:color .2s;}
+.foot-col ul li a:hover{color:var(--silver2);}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;color:rgba(200,200,200,.2);font-size:11px;letter-spacing:.5px;}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .65s ease,transform .65s ease;}
+.reveal.v{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .nav-links.open{
+    display:flex;flex-direction:column;position:fixed;top:70px;left:0;right:0;
+    background:rgba(8,8,8,.98);padding:28px 6%;gap:22px;
+    border-bottom:1px solid rgba(217,0,0,.2);backdrop-filter:blur(18px);
+  }
+  .sobre-grid,.int-grid,.cont-grid{grid-template-columns:1fr;gap:36px;}
+  .int-grid{border-radius:4px;}
+  .int-img img,.sobre-left img{height:320px;}
+  .int-copy{padding:36px 32px;}
+  .hero-counters{display:none;}
+  .clients-masonry{grid-template-columns:1fr 1fr;}
+  .cl-card:first-child{grid-column:span 1;grid-row:span 1;}
+  .foot-grid{grid-template-columns:1fr;gap:30px;}
+  body{cursor:auto;}
+  #cur,#cur2{display:none;}
+}
+@media(max-width:600px){
+  section{padding:70px 5%;}
+  .hero-content{padding:0 5%;padding-top:70px;}
+  .hero-btns{flex-direction:column;}
+  .p-grid{grid-template-columns:1fr;}
+  .slide{flex:0 0 100%;}
+  .clients-masonry{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur2"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <div class="logo-badge">
+      <div class="logo-j">J</div>
+      <svg class="logo-hex" viewBox="0 0 60 60" fill="none">
+        <polygon points="30,2 56,16 56,44 30,58 4,44 4,16" stroke="rgba(217,0,0,0.5)" stroke-width="1.5" fill="none"/>
+        <polygon points="30,8 50,19.5 50,40.5 30,52 10,40.5 10,19.5" stroke="rgba(217,0,0,0.2)" stroke-width="1" fill="none"/>
+      </svg>
+      <div class="logo-ring-outer"></div>
+      <div class="logo-dot"></div>
+    </div>
+    <div class="logo-text-wrap">
+      <span class="logo-main">J<span>.</span> MOTOS</span>
+      <span class="logo-sub">Blumenau · SC</span>
+    </div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#estoque">Estoque</a></li>
+    <li><a href="#catalogo">Catálogo</a></li>
+    <li><a href="#clientes">Clientes</a></li>
+    <li><a href="#avaliacoes">Avaliações</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="https://wa.me/5547999414245" target="_blank" class="nav-cta">WhatsApp</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-stripes"></div>
+  <div class="hero-stripes2"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-scan"></div>
+
+  <div class="hero-content">
+    <div class="h-eyebrow">
+      <div class="h-dot"></div>
+      <span class="h-eyebrow-txt">Motos Novas & Seminovas · Blumenau SC</span>
+    </div>
+
+    <h1 class="hero-title">
+      <span class="ht1">J. MOTOS</span>
+      <span class="ht2">BLUMENAU</span>
+      <span class="ht3">REFERÊNCIA</span>
+    </h1>
+
+    <p class="hero-desc">
+      Especializada em venda de motos novas e seminovas com atendimento de qualidade, confiança e os melhores preços da região. Motos revisadas, com garantia e procedência comprovada.
+    </p>
+
+    <div class="hero-tags">
+      <div class="htag">🏍️ Novas & Seminovas</div>
+      <div class="htag">✅ Garantia Comprovada</div>
+      <div class="htag">⭐ 4.8 no Google</div>
+      <div class="htag">💰 Melhores Preços</div>
+    </div>
+
+    <div class="hero-btns">
+      <a href="#catalogo" class="btn-p">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        Ver Catálogo
+      </a>
+      <a href="https://wa.me/5547999414245?text=Olá!%20Vi%20o%20site%20da%20J.%20Motos%20e%20gostaria%20de%20mais%20informações." target="_blank" class="btn-s">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.985-1.31A9.954 9.954 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+        Falar Agora
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-counters">
+    <div class="hc-item"><div class="hc-num">4.8★</div><div class="hc-lbl">Google</div></div>
+    <div class="hc-item"><div class="hc-num">16+</div><div class="hc-lbl">Avaliações</div></div>
+    <div class="hc-item"><div class="hc-num">100%</div><div class="hc-lbl">Garantia</div></div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="sc-line"></div>
+    <span class="sc-txt">Scroll</span>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ti">🏍️ Motos Novas & Seminovas<span class="ts">◆</span></span>
+    <span class="ti">Garantia e Procedência<span class="ts">◆</span></span>
+    <span class="ti">4.8 Stars no Google<span class="ts">◆</span></span>
+    <span class="ti">Blumenau — SC<span class="ts">◆</span></span>
+    <span class="ti">Melhores Preços da Região<span class="ts">◆</span></span>
+    <span class="ti">Motos Revisadas<span class="ts">◆</span></span>
+    <span class="ti">Atendimento de Qualidade<span class="ts">◆</span></span>
+    <span class="ti">🏍️ Motos Novas & Seminovas<span class="ts">◆</span></span>
+    <span class="ti">Garantia e Procedência<span class="ts">◆</span></span>
+    <span class="ti">4.8 Stars no Google<span class="ts">◆</span></span>
+    <span class="ti">Blumenau — SC<span class="ts">◆</span></span>
+    <span class="ti">Melhores Preços da Região<span class="ts">◆</span></span>
+    <span class="ti">Motos Revisadas<span class="ts">◆</span></span>
+    <span class="ti">Atendimento de Qualidade<span class="ts">◆</span></span>
+  </div>
+</div>
+
+<!-- ESTOQUE -->
+<section id="estoque">
+  <div style="margin-bottom:52px;">
+    <div class="s-tag reveal">Estoque Real</div>
+    <h2 class="s-title reveal d1">NOSSAS<br><em>MOTOS</em> EM ESTOQUE</h2>
+    <p class="s-desc reveal d2">Fotos reais do nosso estoque. Todas as motos revisadas, com garantia e procedência comprovada.</p>
+  </div>
+  <div class="slider-wrap reveal">
+    <div class="slider-track" id="sliderTrack">
+      <div class="slide"><img src="https://i.postimg.cc/BnFk6mcN/Captura-de-tela-2026-04-30-121844.jpg" alt="Estoque 1" loading="lazy"><div class="slide-info"><div class="si-tag">Estoque</div><div class="si-name">J. Motos · Revisada</div></div></div>
+      <div class="slide"><img src="https://i.postimg.cc/K8Twz0rD/Captura-de-tela-2026-04-30-121908.jpg" alt="Estoque 2" loading="lazy"><div class="slide-info"><div class="si-tag">Estoque</div><div class="si-name">J. Motos · Garantia</div></div></div>
+      <div class="slide"><img src="https://i.postimg.cc/wjNZvwcc/Captura-de-tela-2026-04-30-121931.jpg" alt="Estoque 3" loading="lazy"><div class="slide-info"><div class="si-tag">Estoque</div><div class="si-name">J. Motos · Procedência</div></div></div>
+      <div class="slide"><img src="https://i.postimg.cc/rw43mfCj/Captura-de-tela-2026-04-30-121951.jpg" alt="Estoque 4" loading="lazy"><div class="slide-info"><div class="si-tag">Estoque</div><div class="si-name">J. Motos · Revisada</div></div></div>
+      <div class="slide"><img src="https://i.postimg.cc/mg9JDmNd/Captura-de-tela-2026-04-30-122011.jpg" alt="Estoque 5" loading="lazy"><div class="slide-info"><div class="si-tag">Estoque</div><div class="si-name">J. Motos · Garantia</div></div></div>
+      <div class="slide"><img src="https://i.postimg.cc/dVCp15mH/Captura-de-tela-2026-04-30-122052.jpg" alt="Estoque 6" loading="lazy"><div class="slide-info"><div class="si-tag">Estoque</div><div class="si-name">J. Motos · Procedência</div></div></div>
+    </div>
+  </div>
+  <div class="sl-ctrls">
+    <button class="sl-btn" id="slPrev">&#8592;</button>
+    <div class="sl-dots" id="slDots"></div>
+    <button class="sl-btn" id="slNext">&#8594;</button>
+  </div>
+  <div style="text-align:center;margin-top:36px;" class="reveal">
+    <a href="https://wa.me/5547999414245?text=Olá!%20Quero%20ver%20o%20estoque%20completo%20da%20J.%20Motos." target="_blank" class="btn-p" style="font-size:13px;display:inline-flex;">
+      Ver Estoque Completo no WhatsApp
+      <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.985-1.31A9.954 9.954 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- CATÁLOGO -->
+<section id="catalogo">
+  <div class="cat-top">
+    <div>
+      <div class="s-tag reveal">Catálogo de Motos</div>
+      <h2 class="s-title reveal d1">ENCONTRE<br>SUA <em>MOTO</em></h2>
+      <p class="s-desc reveal d2">Todas as motos com garantia e procedência. Clique em qualquer modelo para falar no WhatsApp.</p>
+    </div>
+    <div class="filters reveal d2">
+      <button class="fb act" data-f="todos">Todos</button>
+      <button class="fb" data-f="sport">Sport</button>
+      <button class="fb" data-f="urbana">Urbana</button>
+      <button class="fb" data-f="trail">Trail</button>
+      <button class="fb" data-f="custom">Custom</button>
+    </div>
+  </div>
+  <div class="p-grid" id="prodGrid"></div>
+  <div style="text-align:center;margin-top:48px;" class="reveal">
+    <a href="https://wa.me/5547999414245?text=Olá%20J.%20Motos!%20Quero%20ver%20todos%20os%20modelos%20disponíveis." target="_blank" class="btn-p" style="font-size:13px;display:inline-flex;">
+      Ver Catálogo Completo no WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- CLIENTES -->
+<section id="clientes">
+  <div class="s-tag reveal">Família J. Motos</div>
+  <h2 class="s-title reveal d1">NOSSOS<br><em>CLIENTES</em></h2>
+  <p class="s-desc reveal d2">Cada foto é uma conquista real. Veja quem já realizou o sonho da moto com a J. Motos!</p>
+  <div class="clients-masonry reveal">
+    <div class="cl-card">
+      <img src="https://i.postimg.cc/NjRCY5QQ/Captura-de-tela-2026-04-30-122121.jpg" alt="Cliente J.Motos 1" loading="lazy">
+      <div class="cl-info"><div class="cl-name">Cliente J. Motos</div><div class="cl-tag">🏍️ Moto com Garantia</div></div>
+    </div>
+    <div class="cl-card">
+      <img src="https://i.postimg.cc/rw5ZcKqM/Captura-de-tela-2026-04-30-122147.jpg" alt="Cliente J.Motos 2" loading="lazy">
+      <div class="cl-info"><div class="cl-name">Cliente J. Motos</div><div class="cl-tag">🏍️ Moto Revisada</div></div>
+    </div>
+    <div class="cl-card">
+      <img src="https://i.postimg.cc/JzjYmGR7/Captura-de-tela-2026-04-30-122212.jpg" alt="Cliente J.Motos 3" loading="lazy">
+      <div class="cl-info"><div class="cl-name">Cliente J. Motos</div><div class="cl-tag">🏍️ Procedência Comprovada</div></div>
+    </div>
+    <div class="cl-card">
+      <img src="https://i.postimg.cc/g23tdnGY/Captura-de-tela-2026-04-30-122233.jpg" alt="Cliente J.Motos 4" loading="lazy">
+      <div class="cl-info"><div class="cl-name">Cliente J. Motos</div><div class="cl-tag">🏍️ Moto com Garantia</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AVALIAÇÕES -->
+<section id="avaliacoes">
+  <div class="s-tag reveal">Avaliações Reais</div>
+  <h2 class="s-title reveal d1">O QUE DIZEM<br>SOBRE <em>NÓS</em></h2>
+  <div class="av-header reveal">
+    <div class="av-big">4.8</div>
+    <div class="av-detail">
+      <div class="stars-r">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star" style="opacity:.6">★</span>
+      </div>
+      <div class="av-count">16 avaliações no Google</div>
+      <div style="font-size:11px;color:var(--text-dim);margin-top:3px;font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:1px;">J. MOTOS · BLUMENAU SC</div>
+    </div>
+  </div>
+  <div class="revs-grid">
+    <div class="rev-card reveal">
+      <div class="rev-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="rev-text">Quem procura moto boa, vale muito a visita! Ótimo atendimento e motos de qualidade. 👍🏍️</p>
+      <div class="rev-auth"><div class="rev-av">G</div><div><div class="rev-name">Cliente Google</div><div class="rev-via">Google Reviews</div></div></div>
+    </div>
+    <div class="rev-card reveal d1">
+      <div class="rev-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="rev-text">Ótimo atendimento e preço justo. Estou muito satisfeito com minha compra na J. Motos!</p>
+      <div class="rev-auth"><div class="rev-av" style="border-color:rgba(200,200,200,.3);color:var(--silver);">M</div><div><div class="rev-name">Cliente Satisfeito</div><div class="rev-via">Google Reviews</div></div></div>
+    </div>
+    <div class="rev-card reveal d2">
+      <div class="rev-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="rev-text">Moto revisada com procedência comprovada. Atendimento excelente e confiança total na compra!</p>
+      <div class="rev-auth"><div class="rev-av" style="border-color:rgba(200,200,200,.3);color:var(--silver);">J</div><div><div class="rev-name">Cliente J. Motos</div><div class="rev-via">Google Reviews</div></div></div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:36px;" class="reveal">
+    <a href="https://www.google.com/search?q=J.+Motos+Blumenau" target="_blank" class="btn-s" style="font-size:13px;display:inline-flex;">Ver Todas as Avaliações no Google ↗</a>
+  </div>
+</section>
+
+<!-- INTERIOR + SOBRE -->
+<section id="sobre" style="padding:0;">
+  <div class="int-grid">
+    <div class="int-img reveal">
+      <img src="https://i.postimg.cc/4NB3WD4j/Captura-de-tela-2026-04-30-121659.jpg" alt="Interior J. Motos">
+    </div>
+    <div class="int-copy reveal d2">
+      <div class="s-tag" style="margin-bottom:16px;">Quem Somos</div>
+      <h2 class="s-title" style="font-size:clamp(36px,4.5vw,54px);margin-bottom:20px;">J. MOTOS<br><em>REFERÊNCIA</em><br><span class="dim">EM BLUMENAU</span></h2>
+      <p class="s-desc" style="margin-bottom:36px;">Especializada em venda de motos novas e seminovas. Referência para quem busca motos revisadas, com garantia e procedência comprovada em Blumenau/SC.</p>
+      <div class="feats">
+        <div class="feat"><div class="feat-ico">🏍️</div><div><h3>Novas e Seminovas</h3><p>Amplo estoque de motos com procedência e revisão completa garantida.</p></div></div>
+        <div class="feat"><div class="feat-ico">✅</div><div><h3>Garantia e Procedência</h3><p>Todas as motos verificadas, com documentação e garantia comprovada.</p></div></div>
+        <div class="feat"><div class="feat-ico">💰</div><div><h3>Melhores Preços</h3><p>Os preços mais competitivos da região de Blumenau para você.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="s-tag reveal">Fale Conosco</div>
+  <h2 class="s-title reveal d1">ENTRE EM<br><em>CONTATO</em></h2>
+  <p class="s-desc reveal d2">Estamos prontos para ajudar você a encontrar a moto ideal. Visite nossa loja ou fale pelo WhatsApp!</p>
+  <div class="cont-grid">
+    <div class="info-blocks">
+      <a href="https://wa.me/5547999414245" target="_blank" class="ib reveal">
+        <div class="ib-ico">📱</div><div><div class="ib-lbl">WhatsApp Principal</div><div class="ib-val">(47) 99941-4245</div></div>
+      </a>
+      <a href="https://wa.me/5547996768575" target="_blank" class="ib reveal d1">
+        <div class="ib-ico">📲</div><div><div class="ib-lbl">WhatsApp Alternativo</div><div class="ib-val">(47) 99676-8575</div></div>
+      </a>
+      <div class="ib reveal d2">
+        <div class="ib-ico">📍</div>
+        <div><div class="ib-lbl">Endereço</div><div class="ib-val">R. dos Caçadores, 2655</div>
+        <div style="font-size:12px;color:var(--text-dim);margin-top:2px;font-family:'Barlow Condensed',sans-serif;">Velha · Blumenau — SC</div></div>
+      </div>
+      <div class="ib reveal d3">
+        <div class="ib-ico">🕐</div>
+        <div><div class="ib-lbl">Horário</div><div class="ib-val">Seg–Sex: até 18h30</div>
+        <div style="font-size:12px;color:var(--text-dim);margin-top:2px;font-family:'Barlow Condensed',sans-serif;">Frente à Assembleia de Deus · Ao lado da Copper</div></div>
+      </div>
+      <a href="https://www.instagram.com/j.motosblumenau/" target="_blank" class="ib reveal d4">
+        <div class="ib-ico">📸</div><div><div class="ib-lbl">Instagram</div><div class="ib-val">@j.motosblumenau</div></div>
+      </a>
+    </div>
+    <div class="map-box reveal d2">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3607.5!2d-49.064!3d-26.945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94df1b28ab88a8b9%3A0xb932364e7d13ef92!2sJ.%20Motos!5e0!3m2!1spt-BR!2sbr!4v1680000000000!5m2!1spt-BR!2sbr"
+        allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="J. Motos Blumenau SC">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="foot-logo-wrap">
+        <div class="foot-logo-j">J</div>
+        <div class="foot-brand">J<span>.</span> MOTOS</div>
+      </div>
+      <p class="foot-p">Especializada em motos novas e seminovas em Blumenau/SC. Nota 4.8 no Google. Motos revisadas com garantia e procedência comprovada.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Navegação</h4>
+      <ul>
+        <li><a href="#estoque">Estoque</a></li>
+        <li><a href="#catalogo">Catálogo</a></li>
+        <li><a href="#clientes">Clientes</a></li>
+        <li><a href="#avaliacoes">Avaliações</a></li>
+        <li><a href="#sobre">Sobre Nós</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Contato</h4>
+      <ul>
+        <li><a href="https://wa.me/5547999414245" target="_blank">📱 (47) 99941-4245</a></li>
+        <li><a href="https://wa.me/5547996768575" target="_blank">📲 (47) 99676-8575</a></li>
+        <li><a href="#">📍 R. dos Caçadores, 2655</a></li>
+        <li><a href="#">🏙️ Velha · Blumenau — SC</a></li>
+        <li><a href="https://www.instagram.com/j.motosblumenau/" target="_blank">📸 @j.motosblumenau</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2025 J. Motos · Blumenau/SC · Todos os direitos reservados.</span>
+    <span style="color:var(--red);">★ 4.8 no Google</span>
+  </div>
+</footer>
+
+<!-- WPP FLOAT -->
+<div class="wpp">
+  <div class="wpp-tip">Falar no WhatsApp 💬</div>
+  <a href="https://wa.me/5547999414245?text=Olá%20J.%20Motos!%20Vi%20o%20site%20e%20gostaria%20de%20mais%20informações." target="_blank" class="wpp-btn" aria-label="WhatsApp J. Motos">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+</div>
+
+<script>
+// ── CURSOR ──
+const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
+document.addEventListener('mousemove',e=>{
+  cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';
+  setTimeout(()=>{cur2.style.left=e.clientX+'px';cur2.style.top=e.clientY+'px';},80);
+});
+
+// ── NAV ──
+const nav=document.getElementById('navbar');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60));
+
+// ── HAMBURGER ──
+const ham=document.getElementById('hamburger'),navL=document.getElementById('navLinks');
+ham.addEventListener('click',()=>navL.classList.toggle('open'));
+navL.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navL.classList.remove('open')));
+
+// ── SLIDER ──
+let si=0;
+const track=document.getElementById('sliderTrack');
+const dotsC=document.getElementById('slDots');
+
+function getVis(){
+  if(window.innerWidth<=600)return 1;
+  if(window.innerWidth<=960)return 2;
+  return 3;
+}
+function buildDots(){
+  const slides=track.querySelectorAll('.slide');
+  const vis=getVis();
+  const total=Math.ceil(slides.length/vis);
+  dotsC.innerHTML='';
+  for(let i=0;i<total;i++){
+    const d=document.createElement('div');
+    d.className='sdot'+(i===0?' act':'');
+    d.addEventListener('click',()=>goTo(i));
+    dotsC.appendChild(d);
+  }
+}
+function goTo(idx){
+  const slides=track.querySelectorAll('.slide');
+  const vis=getVis();
+  const total=Math.ceil(slides.length/vis);
+  si=(idx+total)%total;
+  const w=slides[0].offsetWidth+18;
+  track.style.transform=`translateX(-${si*vis*w}px)`;
+  dotsC.querySelectorAll('.sdot').forEach((d,i)=>d.classList.toggle('act',i===si));
+}
+document.getElementById('slPrev').addEventListener('click',()=>goTo(si-1));
+document.getElementById('slNext').addEventListener('click',()=>goTo(si+1));
+setInterval(()=>goTo(si+1),3500);
+buildDots();
+window.addEventListener('resize',()=>{buildDots();goTo(0);});
+
+// ── CATALOG DATA ──
+const stockImgs=[
+  'https://i.postimg.cc/BnFk6mcN/Captura-de-tela-2026-04-30-121844.jpg',
+  'https://i.postimg.cc/K8Twz0rD/Captura-de-tela-2026-04-30-121908.jpg',
+  'https://i.postimg.cc/wjNZvwcc/Captura-de-tela-2026-04-30-121931.jpg',
+  'https://i.postimg.cc/rw43mfCj/Captura-de-tela-2026-04-30-121951.jpg',
+  'https://i.postimg.cc/mg9JDmNd/Captura-de-tela-2026-04-30-122011.jpg',
+  'https://i.postimg.cc/dVCp15mH/Captura-de-tela-2026-04-30-122052.jpg',
+];
+
+const catalog=[
+  {nome:'Honda CG 160 Fan',cat:'urbana',cc:'160cc',ano:'2023',km:'0km',preco:'R$ 12.990',badge:'Novo',bt:'b-red',msg:'Honda CG 160 Fan'},
+  {nome:'Yamaha Fazer 250',cat:'sport',cc:'249cc',ano:'2022',km:'18.000km',preco:'R$ 17.500',badge:'Seminova',bt:'b-silver',msg:'Yamaha Fazer 250'},
+  {nome:'Honda XRE 300',cat:'trail',cc:'296cc',ano:'2021',km:'32.000km',preco:'R$ 22.900',badge:'Revisada',bt:'b-dark',msg:'Honda XRE 300'},
+  {nome:'Honda Biz 125',cat:'urbana',cc:'125cc',ano:'2023',km:'0km',preco:'R$ 10.490',badge:'Novo',bt:'b-red',msg:'Honda Biz 125'},
+  {nome:'Yamaha MT-03',cat:'sport',cc:'321cc',ano:'2022',km:'14.000km',preco:'R$ 27.900',badge:'Destaque',bt:'b-silver',msg:'Yamaha MT-03'},
+  {nome:'Honda Titan 160',cat:'urbana',cc:'162cc',ano:'2023',km:'0km',preco:'R$ 14.290',badge:'Novo',bt:'b-red',msg:'Honda Titan 160'},
+  {nome:'Yamaha Crosser 150',cat:'trail',cc:'150cc',ano:'2021',km:'28.000km',preco:'R$ 15.800',badge:'Revisada',bt:'b-dark',msg:'Yamaha Crosser 150'},
+  {nome:'Honda Shadow 750',cat:'custom',cc:'745cc',ano:'2020',km:'22.000km',preco:'R$ 44.900',badge:'Premium',bt:'b-silver',msg:'Honda Shadow 750'},
+];
+
+function renderCatalog(filter='todos'){
+  const grid=document.getElementById('prodGrid');
+  const items=filter==='todos'?catalog:catalog.filter(p=>{
+    if(filter==='sport')return p.cat==='sport';
+    if(filter==='urbana')return p.cat==='urbana';
+    if(filter==='trail')return p.cat==='trail';
+    if(filter==='custom')return p.cat==='custom';
+    return true;
+  });
+  grid.innerHTML=items.map((p,i)=>`
+    <div class="p-card reveal" style="transition-delay:${i*.07}s">
+      <div class="p-img">
+        <img src="${stockImgs[i%stockImgs.length]}" alt="${p.nome}" loading="lazy">
+        <div class="p-badge ${p.bt}">${p.badge}</div>
+      </div>
+      <div class="p-body">
+        <div class="p-cat">${p.cat.toUpperCase()}</div>
+        <div class="p-name">${p.nome}</div>
+        <div class="p-specs">
+          <span class="ps"><span class="ps-i">⚙️</span>${p.cc}</span>
+          <span class="ps"><span class="ps-i">📅</span>${p.ano}</span>
+          <span class="ps"><span class="ps-i">🛣️</span>${p.km}</span>
+        </div>
+        <div class="p-foot">
+          <div>
+            <div class="p-lbl">A partir de</div>
+            <div class="p-price">${p.preco}</div>
+          </div>
+          <a href="https://wa.me/5547999414245?text=${encodeURIComponent('Olá J. Motos! Tenho interesse na '+p.msg+'. Pode me dar mais informações?')}" target="_blank" class="btn-card">
+            <svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.985-1.31A9.954 9.954 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+            Tenho Interesse
+          </a>
+        </div>
+      </div>
+    </div>`).join('');
+  initReveal();
+}
+
+document.querySelectorAll('.fb').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.fb').forEach(x=>x.classList.remove('act'));
+    b.classList.add('act');renderCatalog(b.dataset.f);
+  });
+});
+
+// ── REVEAL ──
+function initReveal(){
+  const els=document.querySelectorAll('.reveal:not(.v)');
+  const obs=new IntersectionObserver(e=>{
+    e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('v');obs.unobserve(x.target);}});
+  },{threshold:.1});
+  els.forEach(el=>obs.observe(el));
+}
+
+renderCatalog();
+initReveal();
+</script>
+</body>
+</html>
